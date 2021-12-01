@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -25,7 +26,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mcv-ij-6Mm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1180" y="-101"/>
+            <point key="canvasLocation" x="-1462" y="198"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -58,7 +59,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3cu-Ea-2eU">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="2020년" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3cu-Ea-2eU">
                                                     <rect key="frame" x="20" y="159.5" width="140" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -76,8 +77,16 @@
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="180" height="200"/>
+                                        <connections>
+                                            <outlet property="dateLabel" destination="3cu-Ea-2eU" id="qN7-Ej-TS0"/>
+                                            <outlet property="titleLabel" destination="eAt-CU-ITe" id="e22-B8-T6D"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="szJ-vY-X5P"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="33Q-1v-lU3"/>
+                                </connections>
                             </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -96,6 +105,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="collectionView" destination="AWt-E3-uzd" id="jil-ag-0zQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -119,6 +131,9 @@
                                 <rect key="frame" x="24" y="145" width="366" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="blS-Rf-aIm" id="2rC-J6-bkc"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="내용" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dWs-N5-nz7">
                                 <rect key="frame" x="24" y="203" width="369" height="21"/>
@@ -132,10 +147,12 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="j60-v4-MaR"/>
                                 </constraints>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="blS-Rf-aIm" id="DwL-69-9iQ"/>
+                                </connections>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="날짜" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sfd-gw-OMw">
                                 <rect key="frame" x="24" y="360" width="366" height="21"/>
@@ -147,6 +164,9 @@
                                 <rect key="frame" x="24" y="393" width="366" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="blS-Rf-aIm" id="qGs-hI-wtN"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="0im-lE-3pS"/>
@@ -173,8 +193,18 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="일기 작성" id="rSG-5C-jQe">
-                        <barButtonItem key="rightBarButtonItem" title="등록" id="bPy-J5-4Xp"/>
+                        <barButtonItem key="rightBarButtonItem" title="등록" id="bPy-J5-4Xp">
+                            <connections>
+                                <action selector="tapConfirmButton:" destination="blS-Rf-aIm" id="NJ3-6b-pV3"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="confirmButton" destination="bPy-J5-4Xp" id="Qs5-1S-6aV"/>
+                        <outlet property="contentsTextView" destination="adO-Qj-T1a" id="Pf8-YE-xdh"/>
+                        <outlet property="dateTextField" destination="1oO-LP-OHd" id="odk-YE-TnF"/>
+                        <outlet property="titleTextField" destination="G7y-Yf-MKD" id="kFk-94-vjJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VaK-vF-NH7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -184,7 +214,7 @@
         <scene sceneID="n45-uB-ZPH">
             <objects>
                 <navigationController id="Swy-48-TLt" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="즐겨찾기" landscapeImage="star" catalog="system" selectedImage="star.fill" id="cyp-lM-nuf"/>
+                    <tabBarItem key="tabBarItem" title="즐겨찾기" image="star" catalog="system" selectedImage="star.fill" id="cyp-lM-nuf"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="L3u-Ct-xK0">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -266,10 +296,10 @@
             </objects>
             <point key="canvasLocation" x="289.85507246376812" y="582.58928571428567"/>
         </scene>
-        <!--Diary Date View Controller-->
+        <!--Diary Detail View Controller-->
         <scene sceneID="EsZ-Qe-oOL">
             <objects>
-                <viewController id="1tA-43-nBQ" customClass="DiaryDateViewController" customModule="Diary" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="1tA-43-nBQ" customClass="DiaryDetailViewController" customModule="Diary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wnI-NT-9ue">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -332,6 +362,9 @@
                                         <rect key="frame" x="0.0" y="0.0" width="48.5" height="31"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="수정"/>
+                                        <connections>
+                                            <action selector="tapEditButton:" destination="1tA-43-nBQ" eventType="touchUpInside" id="4rX-qJ-YNJ"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SPk-Wh-V6H">
                                         <rect key="frame" x="98.5" y="0.0" width="48.5" height="31"/>
@@ -339,6 +372,9 @@
                                         <buttonConfiguration key="configuration" style="plain" title="삭제">
                                             <color key="baseForegroundColor" systemColor="systemPinkColor"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="tapDeleteButton:" destination="1tA-43-nBQ" eventType="touchUpInside" id="JfG-Zp-OdI"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -362,6 +398,11 @@
                             <constraint firstItem="KJs-ca-09m" firstAttribute="top" secondItem="mkJ-71-f74" secondAttribute="bottom" constant="24" id="y2z-xL-TV5"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="contentsTextView" destination="mkJ-71-f74" id="kmW-yo-6Zl"/>
+                        <outlet property="dateLabel" destination="Nnv-om-Rcj" id="Nvr-op-6PL"/>
+                        <outlet property="titleLabel" destination="VLL-b7-dBZ" id="6yV-NS-i8L"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uBS-Pv-ild" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -371,7 +412,9 @@
         <scene sceneID="7rl-u2-25c">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lMO-ew-xob" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="일기장" landscapeImage="folder" catalog="system" selectedImage="folder.fill" id="3Hj-y3-lyq"/>
+                    <tabBarItem key="tabBarItem" title="일기장" selectedImage="folder.fill" catalog="system" id="3Hj-y3-lyq">
+                        <imageReference key="image" image="folder" catalog="system" symbolScale="default"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="LUy-Ty-4pO">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
