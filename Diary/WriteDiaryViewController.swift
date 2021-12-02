@@ -40,16 +40,30 @@ class WriteDiaryViewController: UIViewController {
         //NotificationCenter : 등록된 이벤트가 발생하면 해당 이벤트들에 대한 행동을 취함(앱 내에서 아무데나서 메세지 던지면 아무데서나 받을 수 있음), post 메서드로 이벤트 전달, 옵저버 등록해서 이벤트 받음
         switch self.diaryEditorMode {
         case .new:
-            let diary = Diary(title: title, contents: contents, date: date, isStar: false)
+            let diary = Diary(
+                uuidString: UUID().uuidString,
+                title: title,
+                contents: contents,
+                date: date,
+                isStar: false
+            )
             self.delegate?.didSelectRegister(diary: diary)
+            
         case let .edit(indexPath, diary):
-            let diary = Diary(title: title, contents: contents, date: date, isStar: diary.isStar)
+            let diary = Diary(
+                uuidString: diary.uuidString,
+                title: title,
+                contents: contents,
+                date: date,
+                isStar: diary.isStar)
             NotificationCenter.default.post(
                 name: NSNotification.Name("editDiary"),
                 object: diary,
-                userInfo: [
-                    "indexPath.row" : indexPath.row
-                ] //notification과 관련된 값 넘겨줌
+                userInfo: nil
+//                    [
+//                    nil
+//                    "indexPath.row" : indexPath.row
+//                ]
             )
         }
         self.navigationController?.popViewController(animated: true) //일기장 화면으로 이동
