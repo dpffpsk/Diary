@@ -7,6 +7,13 @@
 
 import UIKit
 
+//등록 or 수정 구분
+enum DiaryEditorMode {
+    case new
+    case edit(IndexPath, Diary) //수정의 경우 detail페이지에서 데이터 받기
+}
+
+
 //해당 delegate를 통해 작성된 다이어리객체 전달
 protocol WriteDiaryViewDelegate: AnyObject {
     func didSelectRegister(diary: Diary)
@@ -17,6 +24,7 @@ class WriteDiaryViewController: UIViewController {
     private let datePicker = UIDatePicker()
     private var diaryDate: Date?
     weak var delegate: WriteDiaryViewDelegate?
+    var diaryEditorMode: DiaryEditorMode = .new
     
     @IBOutlet var titleTextField: UITextField!
     @IBOutlet var contentsTextView: UITextView!
@@ -28,8 +36,22 @@ class WriteDiaryViewController: UIViewController {
         guard let title = self.titleTextField.text else { return }
         guard let contents = self.contentsTextView.text else { return }
         guard let date = self.diaryDate else { return }
-        let diary = Diary(title: title, contents: contents, date: date, isStar: false)
-        self.delegate?.didSelectRegister(diary: diary)
+        
+        //NotificationCenter : 등록된 이벤트가 발생하면 해당 이벤트들에 대한 행동을 취함(앱 내에서 아무데나서 메세지 던지면 아무데서나 받을 수 있음), post 메서드로 이벤트 전달, 옵저버 등록해서 이벤트 받음
+        switch self.diaryEditorMode {
+        case .new:
+            let diary = Diary(title: title, contents: contents, date: date, isStar: false)
+            self.delegate?.didSelectRegister(diary: diary)
+        case let .edit(indexPath, diary):
+            let diary = Diary(title: title, contents: contents, date: date, isStar: diary.isStar)
+            NotificationCenter.default.post(
+                name: NSNotification.Name("editDiary"),
+                object: diary,
+                userInfo: [
+                    "indexPath.row" : indexPath.row
+                ] //notification과 관련된 값 넘겨줌
+            )
+        }
         self.navigationController?.popViewController(animated: true) //일기장 화면으로 이동
     }
     
@@ -39,6 +61,7 @@ class WriteDiaryViewController: UIViewController {
         self.configureContentsTextView()
         self.configureDatePicker()
         self.configureInputField()
+        self.configureEditMode()
         self.confirmButton.isEnabled = false
     }
 
@@ -97,6 +120,30 @@ class WriteDiaryViewController: UIViewController {
     //등록버튼의 활성화 여부를 판단하는 메서드
     private func validateInputField() {
         self.confirmButton.isEnabled = !(self.titleTextField.text?.isEmpty ?? true) && !(self.dateTextField.text?.isEmpty ?? true) && !self.contentsTextView.text.isEmpty
+    }
+    
+    //MARK: - configureEditorMode
+    //수정일 경우, 전달 받은 데이터로 초기화
+    private func configureEditMode() {
+        switch self.diaryEditorMode {
+        case let .edit(_, diary):
+            self.titleTextField.text = diary.title
+            self.contentsTextView.text = diary.contents
+            self.dateTextField.text = self.dateToString(date: diary.date)
+            self.diaryDate = diary.date
+            self.confirmButton.title = "수정"
+        default:
+            break
+        }
+    }
+    
+    //MARK: - dateToString
+    //date -> string 반환
+    private func dateToString(date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yy년 MM월 dd일(EEEEE)"
+        formatter.locale = Locale(identifier: "ko_KR")
+        return formatter.string(from: date)
     }
 }
 

@@ -116,7 +116,7 @@
         <!--일기 작성-->
         <scene sceneID="TH8-tp-6A1">
             <objects>
-                <viewController id="blS-Rf-aIm" customClass="WriteDiaryViewController" customModule="Diary" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WriteDiaryViewController" id="blS-Rf-aIm" customClass="WriteDiaryViewController" customModule="Diary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="O79-6I-dMn">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -277,8 +277,16 @@
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="414" height="80"/>
+                                        <connections>
+                                            <outlet property="dateLabel" destination="f4E-QH-75t" id="bgv-S2-Bcw"/>
+                                            <outlet property="titleLabel" destination="5h5-1S-a81" id="GHS-w3-wVh"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="kXW-Nb-zHf" id="0zs-a1-7Ra"/>
+                                    <outlet property="delegate" destination="kXW-Nb-zHf" id="2HB-Os-fqU"/>
+                                </connections>
                             </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="2vf-rV-o2V"/>
@@ -291,6 +299,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ogv-Fj-Xww"/>
+                    <connections>
+                        <outlet property="collectionView" destination="4UB-ke-Tqc" id="QY4-JT-NC3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aUg-vE-6OG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -299,7 +310,7 @@
         <!--Diary Detail View Controller-->
         <scene sceneID="EsZ-Qe-oOL">
             <objects>
-                <viewController id="1tA-43-nBQ" customClass="DiaryDetailViewController" customModule="Diary" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DiaryDetailViewController" id="1tA-43-nBQ" customClass="DiaryDetailViewController" customModule="Diary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wnI-NT-9ue">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -333,7 +344,6 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="oAb-Rt-EMn"/>
                                 </constraints>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
