@@ -61,7 +61,6 @@ class StarViewController: UIViewController {
         guard let dairy = starDiary["diary"] as? Diary else { return }
         guard let isStar = starDiary["isStar"] as? Bool else { return }
         guard let uuidString = starDiary["uuidString"] as? String else { return }
-        guard let index = self.diaryList.firstIndex(where: { $0.uuidString == uuidString }) else { return }
         
         if isStar{
             self.diaryList.append(dairy)
@@ -71,9 +70,9 @@ class StarViewController: UIViewController {
             })
             self.collectionView.reloadData()
         } else {
-//            self.diaryList.remove(at: index)
-//            self.collectionView.deleteItems(at: [IndexPath(row: index, section: 0)])
-            self.diaryList[index].isStar = isStar
+            guard let index = self.diaryList.firstIndex(where: { $0.uuidString == uuidString }) else { return }
+            self.diaryList.remove(at: index)
+            self.collectionView.deleteItems(at: [IndexPath(row: index, section: 0)])
         }
     }
     @objc func deleteDiaryNotification(_ notification: Notification){
@@ -95,7 +94,13 @@ class StarViewController: UIViewController {
             guard let contents = $0["contents"] as? String else { return nil }
             guard let date = $0["date"] as? Date else { return nil }
             guard let isStar = $0["isStar"] as? Bool else { return nil }
-            return Diary(uuidString: uuidString, title: title, contents: contents, date: date, isStar: isStar)
+            return Diary(
+                uuidString: uuidString,
+                title: title,
+                contents: contents,
+                date: date,
+                isStar: isStar
+            )
         }.filter({
             //즐겨찾기한 일기만 표시되게
             $0.isStar == true
@@ -126,7 +131,7 @@ class StarViewController: UIViewController {
 
 extension StarViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        self.diaryList.count
+        return self.diaryList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -153,3 +158,4 @@ extension StarViewController: UICollectionViewDelegate {
         self.navigationController?.pushViewController(viewController, animated: true)
     }
 }
+

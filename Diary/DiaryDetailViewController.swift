@@ -33,8 +33,12 @@ class DiaryDetailViewController: UIViewController {
         viewController.diaryEditorMode = .edit(indexPath, diary)
         
         //NotificationCenter 옵저버 추가
-        NotificationCenter.default.addObserver(self, selector: #selector(editDiaryNotification(_:)), name: NSNotification.Name("editDiary"), object: nil)
-        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(editDiaryNotification(_:)),
+            name: NSNotification.Name("editDiary"),
+            object: nil
+        )
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     @objc func editDiaryNotification(_ notification :Notification){
@@ -74,6 +78,7 @@ class DiaryDetailViewController: UIViewController {
         guard let diary = self.diary else { return }
         if diary.uuidString == uuidString {
             self.diary?.isStar = isStar
+            self.configureView()
         }
     }
     

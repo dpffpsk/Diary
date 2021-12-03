@@ -70,7 +70,6 @@ class ViewController: UIViewController {
     }
     
     
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //세그웨이로 이동되는 컨트롤러가 무엇인지 알 수 있게
         if let writeDiaryViewController = segue.destination as? WriteDiaryViewController {
@@ -133,7 +132,7 @@ class ViewController: UIViewController {
         
         //최신순으로 정렬
         //왼쪽 데이터를 오른쪽 데이터 비교해가며 내림차순으로 정렬되게
-        self.diaryList = self.diaryList.sorted(by: { $0.date.compare($1.date) == .orderedAscending
+        self.diaryList = self.diaryList.sorted(by: { $0.date.compare($1.date) == .orderedDescending
         })
     }
 }
@@ -190,17 +189,3 @@ extension ViewController: UICollectionViewDelegate {
         self.navigationController?.pushViewController(viewController, animated: true)
     }
 }
-
-/*
-//MARK: - DiaryDetailViewDelegate
-extension ViewController: DiaryDetailViewDelegate {
-    func didSelectDelete(indexPath: IndexPath) {
-        self.diaryList.remove(at: indexPath.row)
-        self.collectionView.deleteItems(at: [indexPath])
-    }
-    
-    func didSelectStar(indexPath: IndexPath, isStar: Bool) {
-        self.diaryList[indexPath.row].isStar = isStar
-    }
-}
-*/

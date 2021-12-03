@@ -13,7 +13,6 @@ enum DiaryEditorMode {
     case edit(IndexPath, Diary) //수정의 경우 detail페이지에서 데이터 받기
 }
 
-
 //해당 delegate를 통해 작성된 다이어리객체 전달
 protocol WriteDiaryViewDelegate: AnyObject {
     func didSelectRegister(diary: Diary)
