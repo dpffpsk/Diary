@@ -16,7 +16,7 @@ class StarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureCollectionView()
-        self.loadStardiaryList()
+        self.loadStarDiaryList()
         
         //NotificationCenter 옵저버 추가 : 수정된 다이어리 내용 가져옴
         NotificationCenter.default.addObserver(
@@ -25,7 +25,6 @@ class StarViewController: UIViewController {
             name: NSNotification.Name("editDiary"),
             object: nil
         )
-        
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(starDiaryNotification(_:)),
@@ -62,17 +61,16 @@ class StarViewController: UIViewController {
         guard let isStar = starDiary["isStar"] as? Bool else { return }
         guard let uuidString = starDiary["uuidString"] as? String else { return }
         
-        if isStar{
-            self.diaryList.append(dairy)
-            self.diaryList = self.diaryList.sorted(by: {
-                //날짜 최신순으로 정렬
-                $0.date.compare($1.date) == .orderedDescending
-            })
-            self.collectionView.reloadData()
+        if isStar {
+          self.diaryList.append(dairy)
+          self.diaryList = self.diaryList.sorted(by: {
+            $0.date.compare($1.date) == .orderedDescending
+          })
+          self.collectionView.reloadData()
         } else {
-            guard let index = self.diaryList.firstIndex(where: { $0.uuidString == uuidString }) else { return }
-            self.diaryList.remove(at: index)
-            self.collectionView.deleteItems(at: [IndexPath(row: index, section: 0)])
+          guard let index = self.diaryList.firstIndex(where: { $0.uuidString == uuidString }) else { return }
+          self.diaryList.remove(at: index)
+          self.collectionView.deleteItems(at: [IndexPath(row: index, section: 0)])
         }
     }
     @objc func deleteDiaryNotification(_ notification: Notification){
@@ -84,30 +82,27 @@ class StarViewController: UIViewController {
     
     
     //MARK: - loadStardiaryList
-    private func loadStardiaryList() {
-        //userDefaults에 저장된 일기 가져옴
-        let userDefaults = UserDefaults.standard
-        guard let data = userDefaults.object(forKey: "diaryList") as? [[String: Any]] else { return }
-        self.diaryList = data.compactMap {
-            guard let uuidString = $0["uuidString"] as? String else { return nil }
-            guard let title = $0["title"] as? String else { return nil }
-            guard let contents = $0["contents"] as? String else { return nil }
-            guard let date = $0["date"] as? Date else { return nil }
-            guard let isStar = $0["isStar"] as? Bool else { return nil }
-            return Diary(
-                uuidString: uuidString,
-                title: title,
-                contents: contents,
-                date: date,
-                isStar: isStar
-            )
-        }.filter({
-            //즐겨찾기한 일기만 표시되게
-            $0.isStar == true
-        }).sorted(by: {
-            //최신순 정렬
-            $0.date.compare($1.date) == .orderedDescending
-        })
+    private func loadStarDiaryList() {
+      let userDefaults = UserDefaults.standard
+      guard let data = userDefaults.object(forKey: "diaryList") as? [[String: Any]] else { return }
+      self.diaryList = data.compactMap {
+        guard let uuidString = $0["uuidString"] as? String else { return nil }
+        guard let title = $0["title"] as? String else { return nil }
+        guard let contents = $0["contents"] as? String else { return nil }
+        guard let date = $0["date"] as? Date else { return nil }
+        guard let isStar = $0["isStar"] as? Bool else { return nil }
+        return Diary(
+          uuidString: uuidString,
+          title: title,
+          contents: contents,
+          date: date,
+          isStar: isStar
+        )
+      }.filter({
+        $0.isStar == true
+      }).sorted(by: {
+        $0.date.compare($1.date) == .orderedDescending
+      })
     }
     
     //MARK: - configureCollectionView
@@ -135,11 +130,11 @@ extension StarViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StarCell", for: indexPath) as? StarCollectionViewCell else { return UICollectionViewCell() }
-        let diary = self.diaryList[indexPath.row]
-        cell.titleLabel.text = diary.title
-        cell.dateLabel.text = self.dateToString(date: diary.date)
-        return cell
+      guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StarCell", for: indexPath) as? StarCollectionViewCell else { return UICollectionViewCell() }
+      let diary = self.diaryList[indexPath.row]
+      cell.titleLabel.text = diary.title
+      cell.dateLabel.text = self.dateToString(date: diary.date)
+      return cell
     }
 }
 

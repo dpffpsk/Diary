@@ -25,6 +25,18 @@ class DiaryDetailViewController: UIViewController {
     @IBOutlet var contentsTextView: UITextView!
     @IBOutlet var dateLabel: UILabel!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.configureView()
+        
+        NotificationCenter.default.addObserver(
+          self,
+          selector: #selector(starDiaryNotification(_:)),
+          name: NSNotification.Name("starDiary"),
+          object: nil
+        )
+    }
+    
     //수정버튼
     @IBAction func tapEditButton(_ sender: Any) {
         guard let viewController = self.storyboard?.instantiateViewController(withIdentifier: "WriteDiaryViewController") as? WriteDiaryViewController else { return }
@@ -60,25 +72,15 @@ class DiaryDetailViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.configureView()
-        
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(starDiaryNotification(_:)),
-            name: NSNotification.Name("starDiary"),
-            object: nil
-        )
-    }
-    @objc func starDiaryNotification(_ notification: Notification){
+    @objc func starDiaryNotification(_ notification: Notification) {
         guard let starDiary = notification.object as? [String: Any] else { return }
         guard let isStar = starDiary["isStar"] as? Bool else { return }
         guard let uuidString = starDiary["uuidString"] as? String else { return }
         guard let diary = self.diary else { return }
+        
         if diary.uuidString == uuidString {
-            self.diary?.isStar = isStar
-            self.configureView()
+          self.diary?.isStar = isStar
+          self.configureView()
         }
     }
     
@@ -108,7 +110,7 @@ class DiaryDetailViewController: UIViewController {
             object: [
                 "diary" : self.diary,
                 "isStar" : self.diary?.isStar ?? false,
-                "indexPath" : diary?.uuidString
+                "uuidString" : diary?.uuidString
             ],
             userInfo: nil
         )

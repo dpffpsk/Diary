@@ -31,7 +31,6 @@ class ViewController: UIViewController {
             name: NSNotification.Name("editDiary"),
             object: nil
         )
-        
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(starDiaryNotification(_:)),
@@ -141,10 +140,9 @@ class ViewController: UIViewController {
 //WriteDiaryViewController의 delegate 사용해서 등록한 diary 넘겨받기
 extension ViewController: WriteDiaryViewDelegate {
     func didSelectRegister(diary: Diary) {
-        debugPrint(diary)
         self.diaryList.append(diary)
         //왼쪽 데이터를 오른쪽 데이터 비교해가며 내림차순으로 정렬되게
-        self.diaryList = self.diaryList.sorted(by: { $0.date.compare($1.date) == .orderedAscending
+        self.diaryList = self.diaryList.sorted(by: { $0.date.compare($1.date) == .orderedDescending
         })
         self.collectionView.reloadData() //추가할 때마다 일기 목록에서 표시
     }
@@ -157,10 +155,8 @@ extension ViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell: DiaryCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "DiaryCell", for: indexPath) as? DiaryCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DiaryCell", for: indexPath) as? DiaryCollectionViewCell else { return UICollectionViewCell() }
         let diary = self.diaryList[indexPath.row]
-        debugPrint(diary)
-        
         cell.titleLabel.text = diary.title
         cell.dateLabel.text = self.dateToString(date: diary.date)
         return cell
