@@ -13,6 +13,11 @@
 		EFDAB08C28E1DE5100AC3AA5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFDAB08A28E1DE5100AC3AA5 /* Main.storyboard */; };
 		EFDAB08E28E1DE5200AC3AA5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFDAB08D28E1DE5200AC3AA5 /* Assets.xcassets */; };
 		EFDAB09128E1DE5200AC3AA5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFDAB08F28E1DE5200AC3AA5 /* LaunchScreen.storyboard */; };
+		EFDAB09928E1E41300AC3AA5 /* StarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDAB09828E1E41300AC3AA5 /* StarViewController.swift */; };
+		EFDAB09B28E1E4B600AC3AA5 /* DiaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDAB09A28E1E4B600AC3AA5 /* DiaryCell.swift */; };
+		EFDAB09D28E1E68D00AC3AA5 /* StarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDAB09C28E1E68D00AC3AA5 /* StarCell.swift */; };
+		EFDAB09F28E1E6E800AC3AA5 /* WriteDiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDAB09E28E1E6E800AC3AA5 /* WriteDiaryViewController.swift */; };
+		EFDAB0A128E1E9CA00AC3AA5 /* DiaryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDAB0A028E1E9CA00AC3AA5 /* DiaryDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +29,11 @@
 		EFDAB08D28E1DE5200AC3AA5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EFDAB09028E1DE5200AC3AA5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EFDAB09228E1DE5200AC3AA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EFDAB09828E1E41300AC3AA5 /* StarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarViewController.swift; sourceTree = "<group>"; };
+		EFDAB09A28E1E4B600AC3AA5 /* DiaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryCell.swift; sourceTree = "<group>"; };
+		EFDAB09C28E1E68D00AC3AA5 /* StarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarCell.swift; sourceTree = "<group>"; };
+		EFDAB09E28E1E6E800AC3AA5 /* WriteDiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteDiaryViewController.swift; sourceTree = "<group>"; };
+		EFDAB0A028E1E9CA00AC3AA5 /* DiaryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +73,11 @@
 				EFDAB08D28E1DE5200AC3AA5 /* Assets.xcassets */,
 				EFDAB08F28E1DE5200AC3AA5 /* LaunchScreen.storyboard */,
 				EFDAB09228E1DE5200AC3AA5 /* Info.plist */,
+				EFDAB09828E1E41300AC3AA5 /* StarViewController.swift */,
+				EFDAB09A28E1E4B600AC3AA5 /* DiaryCell.swift */,
+				EFDAB09C28E1E68D00AC3AA5 /* StarCell.swift */,
+				EFDAB09E28E1E6E800AC3AA5 /* WriteDiaryViewController.swift */,
+				EFDAB0A028E1E9CA00AC3AA5 /* DiaryDetailViewController.swift */,
 			);
 			path = Diary;
 			sourceTree = "<group>";
@@ -138,8 +153,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFDAB09928E1E41300AC3AA5 /* StarViewController.swift in Sources */,
+				EFDAB09F28E1E6E800AC3AA5 /* WriteDiaryViewController.swift in Sources */,
+				EFDAB09D28E1E68D00AC3AA5 /* StarCell.swift in Sources */,
 				EFDAB08928E1DE5100AC3AA5 /* ViewController.swift in Sources */,
 				EFDAB08528E1DE5100AC3AA5 /* AppDelegate.swift in Sources */,
+				EFDAB0A128E1E9CA00AC3AA5 /* DiaryDetailViewController.swift in Sources */,
+				EFDAB09B28E1E4B600AC3AA5 /* DiaryCell.swift in Sources */,
 				EFDAB08728E1DE5100AC3AA5 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
