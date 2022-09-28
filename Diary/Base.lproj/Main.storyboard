@@ -48,7 +48,7 @@
         <scene sceneID="a9f-ci-Ejn">
             <objects>
                 <navigationController id="AWk-XP-db9" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="즐겨찾기" selectedImage="star.fill" catalog="system" id="5XE-Qs-iLT"/>
+                    <tabBarItem key="tabBarItem" title="즐겨찾기" image="star.fill" catalog="system" selectedImage="star.fill" id="5XE-Qs-iLT"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="NM6-xR-obO">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -291,6 +291,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="diaryCollectionView" destination="S5t-hN-D4X" id="67u-mj-ffF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -367,8 +370,18 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="일기 작성" id="JOk-UW-Hwc">
-                        <barButtonItem key="rightBarButtonItem" title="등록" id="A5U-gu-Ytl"/>
+                        <barButtonItem key="rightBarButtonItem" title="등록" id="A5U-gu-Ytl">
+                            <connections>
+                                <action selector="registerButton:" destination="HTs-5G-6mZ" id="NCu-UK-q05"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="contentsTextView" destination="n1U-T9-vGP" id="FKC-tp-lmD"/>
+                        <outlet property="dateTextField" destination="3b3-5T-3Ba" id="xvh-7I-5Cq"/>
+                        <outlet property="registerButton" destination="A5U-gu-Ytl" id="0oU-dN-Yf5"/>
+                        <outlet property="titleTextField" destination="s7N-GA-bpU" id="NFq-fB-KRf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OMP-1f-LwU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
