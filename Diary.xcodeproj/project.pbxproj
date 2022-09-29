@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EF62ABB628E5C7CD005DC314 /* Diary.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF62ABB528E5C7CD005DC314 /* Diary.swift */; };
 		EFDAB08528E1DE5100AC3AA5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDAB08428E1DE5100AC3AA5 /* AppDelegate.swift */; };
 		EFDAB08728E1DE5100AC3AA5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDAB08628E1DE5100AC3AA5 /* SceneDelegate.swift */; };
 		EFDAB08928E1DE5100AC3AA5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDAB08828E1DE5100AC3AA5 /* ViewController.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EF62ABB528E5C7CD005DC314 /* Diary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diary.swift; sourceTree = "<group>"; };
 		EFDAB08128E1DE5100AC3AA5 /* Diary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Diary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFDAB08428E1DE5100AC3AA5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EFDAB08628E1DE5100AC3AA5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 				EFDAB09C28E1E68D00AC3AA5 /* StarCell.swift */,
 				EFDAB09E28E1E6E800AC3AA5 /* WriteDiaryViewController.swift */,
 				EFDAB0A028E1E9CA00AC3AA5 /* DiaryDetailViewController.swift */,
+				EF62ABB528E5C7CD005DC314 /* Diary.swift */,
 			);
 			path = Diary;
 			sourceTree = "<group>";
@@ -158,6 +161,7 @@
 				EFDAB09D28E1E68D00AC3AA5 /* StarCell.swift in Sources */,
 				EFDAB08928E1DE5100AC3AA5 /* ViewController.swift in Sources */,
 				EFDAB08528E1DE5100AC3AA5 /* AppDelegate.swift in Sources */,
+				EF62ABB628E5C7CD005DC314 /* Diary.swift in Sources */,
 				EFDAB0A128E1E9CA00AC3AA5 /* DiaryDetailViewController.swift in Sources */,
 				EFDAB09B28E1E4B600AC3AA5 /* DiaryCell.swift in Sources */,
 				EFDAB08728E1DE5100AC3AA5 /* SceneDelegate.swift in Sources */,

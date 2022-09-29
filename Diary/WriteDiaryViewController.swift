@@ -7,6 +7,11 @@
 
 import UIKit
 
+protocol WriteDiaryViewDelegate: AnyObject {
+  func didSelectReigster(diary: Diary)
+    
+}
+
 class WriteDiaryViewController: UIViewController {
 
     @IBOutlet weak var titleTextField: UITextField!
@@ -20,7 +25,7 @@ class WriteDiaryViewController: UIViewController {
     
     private let datePicker = UIDatePicker()
     private var diaryDate: Date?
-    
+    weak var delegate: WriteDiaryViewDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,14 +33,24 @@ class WriteDiaryViewController: UIViewController {
         self.configureContentsTextView()
         self.configureDatePicker()
         self.configureInputField()
-        
-    
     }
 
     // 등록 버튼
     @IBAction func tapRegisterButton(_ sender: Any) {
+        guard let title = self.titleTextField.text else { return }
+        guard let contents = self.contentsTextView.text else { return }
+        guard let date = self.diaryDate else { return }
+        debugPrint("title : \(title)")
+        debugPrint("contents : \(contents)")
+        debugPrint("date : \(date)")
+        
+        
+        let diary = Diary(title: title, contents: contents, date: date)
+        debugPrint("diary : \(diary)")
+        self.delegate?.didSelectReigster(diary: diary)
+        
+        self.navigationController?.popViewController(animated: true)
     }
-    
     
     // contents
     private func configureContentsTextView() {
@@ -43,11 +58,10 @@ class WriteDiaryViewController: UIViewController {
         self.contentsTextView.layer.borderColor = borderColor.cgColor
         self.contentsTextView.layer.borderWidth = 1.0
         self.contentsTextView.layer.cornerRadius = 5.0
-        
     }
     
     // date
-    private func configureDatePicker(){
+    private func configureDatePicker() {
         self.datePicker.datePickerMode = .date // 날짜만
         self.datePicker.preferredDatePickerStyle = .wheels
         
@@ -96,7 +110,6 @@ extension WriteDiaryViewController: UITextViewDelegate, UITextFieldDelegate {
 //    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
 //        return Bool
 //    }
-//
 
     func textViewDidChange(_ textView: UITextView) {
         self.validateInputField()

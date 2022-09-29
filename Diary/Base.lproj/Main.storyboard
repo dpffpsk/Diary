@@ -372,7 +372,7 @@
                     <navigationItem key="navigationItem" title="일기 작성" id="JOk-UW-Hwc">
                         <barButtonItem key="rightBarButtonItem" title="등록" id="A5U-gu-Ytl">
                             <connections>
-                                <action selector="registerButton:" destination="HTs-5G-6mZ" id="NCu-UK-q05"/>
+                                <action selector="tapRegisterButton:" destination="HTs-5G-6mZ" id="bNj-wG-PgN"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
